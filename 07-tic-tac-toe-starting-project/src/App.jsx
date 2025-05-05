@@ -4,23 +4,24 @@ import PlayerField from "./components/PlayerField";
 import GameBoard from "./components/GameBoard";
 import Log from "./components/Log";
 
+
+function getCurrentPlayer(turns) {
+  let currentPlayer = 'X';
+
+  if (turns.length > 0 && turns[0].player == 'X') {
+    currentPlayer = 'O';
+  }
+
+  return currentPlayer;
+}
+
 function App() {
   const [gameTurns, setGameTurn] = useState([]);
-  const [activePlayer, setActivePlayer] = useState("X");
+  const activePlayer = getCurrentPlayer(gameTurns);
 
   function toggleActivePlayer(row, column) {
-    setActivePlayer((currentPlayer) => {
-      if (currentPlayer === "X") {
-        return "O";
-      }
-      return "X";
-    });
-
     setGameTurn((prevTurns) => {
-      let currentPlayer = 'X';
-      if (prevTurns.length > 0 && prevTurns[0].player === 'X') {
-        currentPlayer = 'O';
-      }
+      const currentPlayer = getCurrentPlayer(prevTurns);
 
       const updatedTurns = [
         {
@@ -59,7 +60,7 @@ function App() {
         />
       </div>
 
-      <Log></Log>
+      <Log turns={gameTurns} />
     </main>
   );
 }

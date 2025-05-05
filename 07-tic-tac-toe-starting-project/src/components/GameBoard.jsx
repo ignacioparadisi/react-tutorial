@@ -26,6 +26,7 @@ function GameBoard({ onSelection, turns }) {
               <li key={columnIndex}>
                 <button
                   onClick={() => onSelection(rowIndex, columnIndex)}
+                  disabled={playerSymbol !== null}
                 >
                   {playerSymbol}
                 </button>

@@ -1,11 +1,15 @@
 import { useState } from "react";
 
-function PlayerField({ initialName, symbol, isActive }) {
+function PlayerField({ initialName, symbol, isActive, onSave }) {
   const [playerName, setPlayerName] = useState(initialName);
   const [isEditing, setIsEditing] = useState(false);
 
   function toggleEditing() {
     setIsEditing((isEditing) => !isEditing);
+
+    if (isEditing) {
+      onSave(symbol, playerName);
+    }
   }
 
   function nameDidChange(event) {

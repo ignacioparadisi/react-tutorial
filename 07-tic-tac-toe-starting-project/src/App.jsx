@@ -55,7 +55,7 @@ function App() {
 
         <GameBoard
           onSelection={toggleActivePlayer}
-          activePlayer={activePlayer}
+          turns={gameTurns}
         />
       </div>
 
